@@ -37,13 +37,13 @@
         self.contentView = view;
         
         label = [[UILabel alloc] initWithFrame:CGRectZero];
-        label.textAlignment = NSTextAlignmentLeft;
+        label.textAlignment = NSTextAlignmentCenter;
         label.numberOfLines = 0;
         [_contentView addSubview:label];
         self.titleLabel = label;
         
         view = [[UIView alloc] initWithFrame:CGRectZero];
-        view.backgroundColor = [UIColor clearColor];//FSCalendarStandardLineColor;
+        view.backgroundColor = FSCalendarStandardLineColor;
         [_contentView addSubview:view];
         self.bottomBorder = view;
         
@@ -60,10 +60,9 @@
     
     _contentView.frame = self.bounds;
     
-    CGFloat leadingSpace = 25.0;
     CGFloat weekdayHeight = _calendar.preferredWeekdayHeight;
     CGFloat weekdayMargin = weekdayHeight * 0.1;
-    CGFloat titleWidth = _contentView.fs_width - 2*leadingSpace;
+    CGFloat titleWidth = _contentView.fs_width;
     
     self.weekdayView.frame = CGRectMake(0, _contentView.fs_height-weekdayHeight-weekdayMargin, self.contentView.fs_width, weekdayHeight);
     
@@ -71,12 +70,11 @@
     
     _bottomBorder.frame = CGRectMake(0, _contentView.fs_height-weekdayHeight-weekdayMargin*2, _contentView.fs_width, 1.0);
 
-//    CGPoint titleHeaderOffset = self.calendar.appearance.headerTitleOffset;
-//    _titleLabel.frame = CGRectMake(titleHeaderOffset.x,
-//                                   titleHeaderOffset.y+_bottomBorder.fs_bottom-titleHeight-weekdayMargin,
-//                                   titleWidth,
-//                                   titleHeight);
-    _titleLabel.frame = CGRectMake(leadingSpace, _bottomBorder.fs_bottom-titleHeight-weekdayMargin, titleWidth,titleHeight);
+    CGPoint titleHeaderOffset = self.calendar.appearance.headerTitleOffset;
+    _titleLabel.frame = CGRectMake(titleHeaderOffset.x,
+                                   titleHeaderOffset.y+_bottomBorder.fs_bottom-titleHeight-weekdayMargin,
+                                   titleWidth,
+                                   titleHeight);
 }
 
 #pragma mark - Properties
